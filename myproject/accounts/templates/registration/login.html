@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+
+{% block function %} 
+    <h1>Login baby!</h1>
+
+    <form method="POST">
+    
+    {% csrf_token %}
+    {{ form.as_p}} <!-- 그냥 form이라고 작성을 해도 장고가 제공해주는 form을 사용할 수 잇다.-->
+
+    <input type="submit" value="Login">
+    </form>
+{% endblock %}

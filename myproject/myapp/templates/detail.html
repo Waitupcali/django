@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+
+
+    {% block intro %}
+        제목: {{post_one.title}}<br>
+        내용: {{post_one.description}}<br>
+    {% endblock %}
+
+    % block function %} 
+    <a href="{% url 'update' post_id %}"><button class="button">To home</button></a>    
+    {% endblock %}
+    

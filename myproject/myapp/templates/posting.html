@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+    {% block intro %}
+        <a href="{% url 'index' %}"><button class="button"> main page </button></a>
+    {% endblock %}
+
+
+    {% block function %}  
+    <form class="posting" method="POST" enctype="multipart/form-data"> 
+        <!-- form에서 이미지를받기위해 enctype 추가-->
+        {% csrf_token %}
+        {{ mypostform.as_ul }}
+        <input type="submit" value="제출할게요~">
+    </form>
+    {% endblock %}

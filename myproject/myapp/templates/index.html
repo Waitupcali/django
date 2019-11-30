@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+
+
+
+<body>
+    
+    <div class="wrapper">
+            <h1 class="main"> LIGHT JIMMY LIGHT TRIP</h1>  
+
+            {% if user.is_authenticated %}
+            <h3 class="main1">{{user.username}}! welcome to Jimmy :P</h3> 
+            <a class="signup" href="{% url 'logout' %}"><h3 class="main2">log out here baby!</h3></a>
+            {% else %}
+        
+            <a class="signup" href="{% url 'signup' %}"><h3 class="main3">Sign up here baby!</h3></a>
+            <a class="signup" href="{% url 'login' %}"><h3 class="main4">log in here baby!</h3></a>
+        
+            {% endif %}
+<!-- first block -->      
+            {% block intro %}
+            <a href="{% url 'posting' %}"><button class="button"> Writing pages </button></a>
+            {% endblock %}
+    </div>    
+       
+
+        <!-- </div>
+            <div class="background">
+            <img src="{% static 'css/rapper.jfif' %}" alt="background picture" class="background">
+        </div>     -->
+
+
+
+
+<!-- second block --> 
+    {% block function %}    
+
+    <h3>글 목록</h3>
+
+        
+
+        {% for blog in all_blog %}      <!-- 아래의 순회자 id를 맞춰줘야함 -->
+        <div class="realbody"> 
+            <div class="wrapper2">
+                <strong>제목 : </strong><a href="{% url 'detail' blog.id %}"><strong>{{blog.title}}</strong></a><br>
+                       <br>내용 : {{blog.description}}<br>
+            </div>
+            {% if blog.myimage %}
+            <img class="blog_img" src="{{ blog.myimage.url }}" alt="picture"><br> <!-- blog 차수에 업로드된 myimage-->
+            {% endif %}
+            <a href="{% url 'update' blog.id %}"> EDIT </a><br>
+            <a href="{% url 'delete' blog.id %}"> DELETE </a><br>
+        </div>
+        {% endfor %}
+
+    {% endblock %}
+
+</body>
+</html>

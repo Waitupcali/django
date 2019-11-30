@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+
+        {% block intro %}
+            <a href="{% url 'index' %}"><button class="button"> Update page </button></a>
+        {% endblock %}
+
+
+        {% block function %} 
+            <form class="posting" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ mypostform.as_ul }}
+                <input type="submit" value="제출할게요~"/>
+            </form>
+        {% endblock %}
